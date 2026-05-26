@@ -177,50 +177,30 @@ section { padding: 120px var(--spacing-xl); position: relative; }
 .menu-price { color: var(--color-primary); font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; }
 .desc { color: var(--color-text-muted); font-size: 0.95rem; }
 
-/* Footer */
+/* --- Footer --- */
 .footer {
-  padding: 80px var(--spacing-xl) 40px;
-  text-align: center; background-color: #050506; border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 80px var(--spacing-xl) 40px;
+    text-align: center; 
+    background-color: #050506; 
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
-.footer-logo { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-text-main); letter-spacing: 5px; margin-bottom: 20px; }
-
-/* About Gallery Styling */
-.about-gallery {
-    display: flex;
-    gap: 20px;
-    padding: 40px 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.about-img-wrapper {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+.footer-logo { 
+    font-family: var(--font-heading); 
+    font-size: 2.5rem; 
+    color: var(--color-text-main); 
+    letter-spacing: 5px; 
+    margin-bottom: 20px; 
 }
 
-.about-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures images fill the box perfectly */
-    transition: transform 0.5s ease;
-}
-
-.about-img-wrapper img:hover {
-    transform: scale(1.05);
-}
-/* About Section Layout */
+/* --- About Section & Gallery Layout --- */
 .about-section {
-    padding: 40px 5%; /* Reduced padding for better flow */
+    padding: 40px 5%;
     background-color: var(--color-bg-dark, #0a0a0c);
 }
 
 .about-container {
     display: flex;
-    align-items: flex-start; /* Aligns content to the top */
+    align-items: flex-start;
     gap: 40px; 
     max-width: 1100px;
     margin: 0 auto;
@@ -232,12 +212,18 @@ section { padding: 120px var(--spacing-xl); position: relative; }
 }
 
 .about-text h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     color: var(--color-primary, #d4af37);
     margin-bottom: 25px;
     font-size: 2rem;
+    border-bottom: 1px solid var(--color-primary);
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
-/* Larger, more luxurious text */
 .about-text p {
     font-size: 1.25rem; 
     line-height: 1.9;
@@ -253,8 +239,9 @@ section { padding: 120px var(--spacing-xl); position: relative; }
 
 .about-img-wrapper img {
     width: 100%;
-    height: 450px; /* Increased height to balance with longer text */
+    height: 450px;
     object-fit: cover;
+    display: block;
     transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
@@ -262,36 +249,40 @@ section { padding: 120px var(--spacing-xl); position: relative; }
     transform: scale(1.05);
 }
 
-/* Flips the layout for the chef section */
 .alt-layout .about-container { 
     flex-direction: row-reverse; 
 }
 
-/* Mobile: Stack everything */
+/* --- Contact Page Specific Fixes --- */
+.contact-image-wrapper img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.map-container iframe {
+    display: block;
+}
+
+/* --- Mobile Responsiveness (Stacked Layouts) --- */
 @media (max-width: 768px) {
-    .about-container { 
+    .about-container, 
+    .contact-container { 
         flex-direction: column !important; 
         text-align: center; 
         gap: 30px; 
     }
-    .about-section { 
-        padding: 40px 5%; 
+    
+    .about-img-wrapper img,
+    .contact-image-wrapper img {
+        height: 300px !important;
     }
-    .about-img-wrapper img {
-        height: 300px; /* Shorter on mobile to keep things compact */
+    
+    .map-container iframe {
+        height: 300px !important;
+    }
+
+    .about-text h2 {
+        font-size: 1.5rem;
     }
 }
-
-/* Styling for About Us titles */
-.about-section h2 {
-    font-family: var(--font-heading); /* Keeps your consistent font */
-    font-weight: 700;                 /* Makes it bold */
-    text-transform: uppercase;        /* Adds elegance and structure */
-    letter-spacing: 2px;              /* Gives the letters room to breathe */
-    color: var(--color-primary);      /* Uses your brand's primary color */
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--color-primary); /* Adds a subtle decorative line */
-    display: inline-block;            /* Keeps the line tight under the text */
-    padding-bottom: 5px;
-}
-
