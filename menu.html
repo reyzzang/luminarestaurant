@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina | Full Menu</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .menu-page-header { padding-top: 180px; padding-bottom: 60px; text-align: center; background: url('assets/images/gallery/menu-header-bg.jpg') center/cover; position: relative; }
+    .menu-page-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, var(--color-bg-dark), rgba(10,10,12,0.8) 50%, var(--color-bg-dark)); }
+    .menu-page-header-content { position: relative; z-index: 2; }
+    
+    .filter-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 60px; flex-wrap: wrap; position: relative; z-index: 2; }
+    .menu-filter-btn { background: transparent; color: var(--color-text-muted); border: none; padding: 10px 20px; cursor: pointer; transition: var(--transition-smooth); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; border-bottom: 1px solid transparent; }
+    .menu-filter-btn.active, .menu-filter-btn:hover { color: var(--color-primary); border-bottom: 1px solid var(--color-primary); }
+    .menu-item-wrapper { transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+  </style>
+</head>
+<body>
+  <div class="page-transition-overlay"><div class="transition-spinner"></div></div>
+  <div id="navbar-placeholder"></div>
+
+  <main>
+    <section class="menu-page-header">
+      <div class="menu-page-header-content reveal">
+        <h1 style="font-size: 4rem; color: var(--color-primary);" data-i18n="menu_title">Our Creations</h1>
+        <p style="max-width: 600px; margin: 20px auto; color: #ccc;" data-i18n="menu_subtitle">A meticulously curated selection of seasonal ingredients.</p>
+      </div>
+    </section>
+
+    <section style="padding-top: 0;">
+      <div class="filter-container reveal delay-1">
+        <button class="menu-filter-btn active" data-filter="all" data-i18n="menu_filter_all">All</button>
+        <button class="menu-filter-btn" data-filter="starters" data-i18n="menu_filter_starters">Starters</button>
+        <button class="menu-filter-btn" data-filter="mains" data-i18n="menu_filter_mains">Mains</button>
+        <button class="menu-filter-btn" data-filter="desserts" data-i18n="menu_filter_desserts">Desserts</button>
+        <button class="menu-filter-btn" data-filter="drinks" data-i18n="menu_filter_drinks">Wine & Spirits</button>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-item-wrapper reveal" data-category="starters">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/burrata.jpg" alt="Burrata"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_1_title">Truffle Burrata</h3><span class="menu-price">₾24</span></div>
+              <p class="desc" data-i18n="dish_1_desc">Fresh Italian burrata, heirloom tomatoes, basil oil, shaved black truffle.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="starters">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/tartare.jpg" alt="Tartare"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_2_title">Wagyu Beef Tartare</h3><span class="menu-price">₾32</span></div>
+              <p class="desc" data-i18n="dish_2_desc">Hand-cut wagyu, quail egg, capers, mustard seed caviar, sourdough crisp.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="starters">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/beignets.jpg" alt="Beignets"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_3_title">Imeretian Cheese Beignets</h3><span class="menu-price">₾19</span></div>
+              <p class="desc" data-i18n="dish_3_desc">A fine-dining take on local flavors, served with a spiced berry coulis.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="menu-item-wrapper reveal" data-category="mains">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/ribeye.jpg" alt="Steak"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_4_title">Charcoal Ribeye</h3><span class="menu-price">₾65</span></div>
+              <p class="desc" data-i18n="dish_4_desc">45-day dry-aged beef, smoked garlic purée, wild asparagus, bone marrow jus.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="mains">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/salmon.jpg" alt="Salmon"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_5_title">Citrus Glazed Salmon</h3><span class="menu-price">₾42</span></div>
+              <p class="desc" data-i18n="dish_5_desc">Atlantic salmon, saffron risotto, fennel crisp, blood orange reduction.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="mains">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/elarji.jpg" alt="Elarji"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_6_title">Wild Mushroom Truffle Elarji</h3><span class="menu-price">₾35</span></div>
+              <p class="desc" data-i18n="dish_6_desc">Traditional cornmeal and cheese, elevated with porcini mushrooms and truffle oil.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="menu-item-wrapper reveal" data-category="desserts">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/fondant.jpg" alt="Fondant"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_7_title">Dark Chocolate Fondant</h3><span class="menu-price">₾18</span></div>
+              <p class="desc" data-i18n="dish_7_desc">Valrhona chocolate, liquid center, Madagascar vanilla bean gelato.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="desserts">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/pannacotta.jpg" alt="Panna Cotta"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_8_title">Vanilla Panna Cotta</h3><span class="menu-price">₾16</span></div>
+              <p class="desc" data-i18n="dish_8_desc">Silky cream, passionfruit glaze, edible gold leaf, pistachio crumble.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="desserts">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/cheeseboard.jpg" alt="Cheese Board"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_9_title">Artisan Cheese Board</h3><span class="menu-price">₾28</span></div>
+              <p class="desc" data-i18n="dish_9_desc">Selection of premium local and European cheeses, honeycomb, candied walnuts.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="menu-item-wrapper reveal" data-category="drinks">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/saperavi.jpg" alt="Red Wine"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_10_title">Saperavi Grand Reserve</h3><span class="menu-price">₾90</span></div>
+              <p class="desc" data-i18n="dish_10_desc">Deep, complex red wine with notes of dark cherry and subtle oak. Bottle.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="drinks">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/tsinandali.jpg" alt="White Wine"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_11_title">Tsinandali Estate White</h3><span class="menu-price">₾75</span></div>
+              <p class="desc" data-i18n="dish_11_desc">Crisp, elegant white wine with floral aromas and a hint of citrus. Bottle.</p>
+            </div>
+          </article>
+        </div>
+        <div class="menu-item-wrapper reveal" data-category="drinks">
+          <article class="menu-card glass-panel">
+            <div class="menu-card-img-wrapper"><img src="assets/images/menu/cocktail.jpg" alt="Cocktail"></div>
+            <div class="menu-card-content">
+              <div class="menu-card-header"><h3 data-i18n="dish_12_title">Lumina Signature Cocktail</h3><span class="menu-price">₾22</span></div>
+              <p class="desc" data-i18n="dish_12_desc">Premium gin, elderflower liqueur, fresh blackberry, rosemary smoke.</p>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.menu-filter-btn');
+      const menuItems = document.querySelectorAll('.menu-item-wrapper');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          const filterValue = button.getAttribute('data-filter');
+
+          menuItems.forEach(item => {
+            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+              item.style.display = 'block';
+              setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+            } else {
+              item.style.opacity = '0'; item.style.transform = 'scale(0.95)';
+              setTimeout(() => { item.style.display = 'none'; }, 600);
+            }
+          });
+        });
+      });
+    });
+  </script>
+  <script src="js/language-switcher.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

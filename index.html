@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumina - A high-end fine dining experience.">
+  <title>Lumina | Luxury Restaurant</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="page-transition-overlay">
+    <div class="transition-spinner"></div>
+  </div>
+
+  <div id="navbar-placeholder"></div>
+
+  <header class="hero">
+    <div class="hero-bg" style="background-image: url('assets/images/hero/hero-bg.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 data-i18n="hero_title">Culinary Perfection.</h1>
+      <p data-i18n="hero_subtitle">Experience the intersection of traditional heritage and modern gastronomy.</p>
+      <a href="contact.html" class="btn-primary" data-i18n="btn_reserve">Book a Table</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="featured-menu">
+      <div class="section-header reveal">
+        <h2 data-i18n="menu_title">Our Creations</h2>
+        <p data-i18n="menu_subtitle">A meticulously curated selection of seasonal ingredients.</p>
+      </div>
+      
+      <div class="menu-grid reveal delay-1">
+        <article class="menu-card glass-panel">
+          <div class="menu-card-img-wrapper">
+            <img src="assets/images/menu/ribeye.jpg" alt="Charcoal Ribeye" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 data-i18n="dish_4_title">Charcoal Ribeye</h3>
+              <span class="menu-price">₾65</span>
+            </div>
+            <p class="desc" data-i18n="dish_4_desc">45-day dry-aged beef, smoked garlic purée, wild asparagus, bone marrow jus.</p>
+          </div>
+        </article>
+        
+        <article class="menu-card glass-panel">
+          <div class="menu-card-img-wrapper">
+            <img src="assets/images/menu/salmon.jpg" alt="Citrus Glazed Salmon" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 data-i18n="dish_5_title">Citrus Glazed Salmon</h3>
+              <span class="menu-price">₾42</span>
+            </div>
+            <p class="desc" data-i18n="dish_5_desc">Atlantic salmon, saffron risotto, fennel crisp, blood orange reduction.</p>
+          </div>
+        </article>
+        
+        <article class="menu-card glass-panel">
+          <div class="menu-card-img-wrapper">
+            <img src="assets/images/menu/fondant.jpg" alt="Dark Chocolate Fondant" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 data-i18n="dish_7_title">Dark Chocolate Fondant</h3>
+              <span class="menu-price">₾18</span>
+            </div>
+            <p class="desc" data-i18n="dish_7_desc">Valrhona chocolate, liquid center, Madagascar vanilla bean gelato.</p>
+          </div>
+        </article>
+      </div>
+      
+      <div style="text-align: center; margin-top: 60px;" class="reveal delay-2">
+        <a href="menu.html" class="btn-primary" data-i18n="nav_menu">View Full Menu</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/language-switcher.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

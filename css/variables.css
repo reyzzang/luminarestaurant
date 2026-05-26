@@ -1,0 +1,24 @@
+:root {
+  --color-primary: #d4af37; /* Richer Gold */
+  --color-primary-hover: #b5952f;
+  --color-bg-dark: #0a0a0c; /* Deeper cinematic black */
+  --color-bg-light: #121215;
+  --color-text-main: #f5f5f5;
+  --color-text-muted: #888888;
+  
+  /* Upgraded Luxury Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Montserrat', sans-serif;
+  
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 5rem;
+  
+  --glass-bg: rgba(18, 18, 21, 0.4);
+  --glass-border: rgba(212, 175, 55, 0.15); /* Subtle gold tint in glass borders */
+  --shadow-elegant: 0 20px 40px rgba(0, 0, 0, 0.7);
+  
+  --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-slow: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
