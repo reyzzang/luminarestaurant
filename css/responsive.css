@@ -36,7 +36,7 @@
   .hamburger.active span:nth-child(2) { opacity: 0; }
   .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   
-  /* Text overflow protection for intermediate mobile break points */
+  /* Text overflow protection for intermediate screen sizes */
   .hero-content h1 { 
     font-size: clamp(2.5rem, 6vw, 3.5rem); 
     word-wrap: break-word;
@@ -47,6 +47,13 @@
     font-size: clamp(2.2rem, 5vw, 3rem) !important;
     word-wrap: break-word;
     overflow-wrap: break-word;
+  }
+
+  .section-header h2 {
+    font-size: clamp(2.2rem, 6vw, 3rem) !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
   }
   
   .about-layout { grid-template-columns: 1fr; gap: 60px; }
@@ -67,10 +74,17 @@
   
   .hero-content p { font-size: 1rem; }
   
+  /* Critical fix for Menu Section title layout sizing */
   .section-header h2 { 
-    font-size: clamp(1.6rem, 6vw, 2.5rem); 
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    font-size: clamp(1.6rem, 7.5vw, 2.3rem) !important; 
+    line-height: 1.2 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   
   /* Fixing heading layout sizing on Contact page */
@@ -97,19 +111,20 @@ html[lang="ka"] h3,
 html[lang="ka"] .hero-content h1,
 html[lang="ka"] .contact-info h1,
 html[lang="ka"] .section-header h2 {
-  letter-spacing: 0px !important; /* Prevents letter tracking separation layout errors with Georgian glyphs */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  letter-spacing: 0px !important; /* Prevents letter tracking layout separations with Georgian glyphs */
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
 }
 
-/* Tighter layout adjustments specifically for Georgian text length constraints */
+/* Tighter layout configurations handling raw Mkhedruli character string lengths */
 @media (max-width: 900px) {
   html[lang="ka"] .hero-content h1 { font-size: 2.8rem; }
   html[lang="ka"] .contact-info h1 { font-size: 2.5rem !important; }
+  html[lang="ka"] .section-header h2 { font-size: 2.4rem !important; }
 }
 
 @media (max-width: 600px) {
   html[lang="ka"] .hero-content h1 { font-size: 2.1rem; }
   html[lang="ka"] .contact-info h1 { font-size: 1.9rem !important; }
-  html[lang="ka"] .section-header h2 { font-size: 1.9rem; }
+  html[lang="ka"] .section-header h2 { font-size: 1.85rem !important; }
 }
