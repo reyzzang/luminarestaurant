@@ -1,14 +1,18 @@
-// 1. RUN IMMEDIATELY: Load language and update UI before page finishes rendering
+// 1. RUN IMMEDIATELY: Load language and apply translations
 (async function() {
     const lang = localStorage.getItem('siteLang') || 'en';
     document.documentElement.setAttribute('lang', lang);
     
-    // Find the UI element and update it right away
-    const currentLangText = document.querySelector('.current-lang-text');
-    if (currentLangText) {
-        updateSwitcherUI(lang, currentLangText);
-    }
-    
+    // Watch for the navbar appearing in the DOM
+    const observer = new MutationObserver((mutations, obs) => {
+        const currentLangText = document.querySelector('.current-lang-text');
+        if (currentLangText) {
+            updateSwitcherUI(lang, currentLangText);
+            obs.disconnect(); // Stop watching once found
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
     try {
         const response = await fetch(`languages/${lang}.json`);
         const translations = await response.json();
@@ -18,7 +22,7 @@
     }
 })();
 
-// 2. Initialize the rest of the dropdown listeners after DOM is fully loaded
+// 2. Initialize the rest of the dropdown listeners
 document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
 
 async function initLanguageSwitcher() {
@@ -82,3 +86,15 @@ function applyTranslations(translations) {
     }
   });
 }
+
+// Global function to be called by the navbar onclick
+window.changeLanguage = async function(lang) {
+    localStorage.setItem('siteLang', lang);
+    const textElement = document.querySelector('.current-lang-text');
+    if (textElement) updateSwitcherUI(lang, textElement);
+    
+    document.body.style.opacity = '0.5';
+    await loadLanguage(lang);
+    document.documentElement.setAttribute('lang', lang);
+    setTimeout(() => { document.body.style.opacity = '1'; }, 200);
+};
