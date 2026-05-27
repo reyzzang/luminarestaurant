@@ -1,3 +1,7 @@
+/* ==========================================================================
+   Lumina Restaurant — Complete Responsive Design Stylesheet
+   ========================================================================== */
+
 @media (max-width: 1200px) {
   .hero-content h1 { font-size: 4.5rem; }
   section { padding: 100px var(--spacing-lg); }
@@ -6,20 +10,44 @@
 
 @media (max-width: 900px) {
   .navbar { padding: 20px var(--spacing-lg); }
+  
   .nav-links {
-    position: fixed; top: 0; right: -100%; width: 100vw; height: 100vh;
-    background: rgba(10, 10, 12, 0.98); backdrop-filter: blur(20px);
-    flex-direction: column; align-items: center; justify-content: center; gap: 40px;
-    transition: right 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: -1;
+    position: fixed; 
+    top: 0; 
+    right: -100%; 
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(10, 10, 12, 0.98); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 40px;
+    transition: right 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+    z-index: -1;
   }
+  
   .nav-links.active { right: 0; }
   .nav-links a { font-size: 1.5rem; }
+  
   .hamburger { display: flex; z-index: 10; }
   .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
   .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   
-  .hero-content h1 { font-size: 3.5rem; }
+  /* Text overflow protection for intermediate mobile break points */
+  .hero-content h1 { 
+    font-size: clamp(2.5rem, 6vw, 3.5rem); 
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .contact-info h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem) !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
   
   .about-layout { grid-template-columns: 1fr; gap: 60px; }
   .contact-layout { grid-template-columns: 1fr; gap: 50px; }
@@ -27,9 +55,61 @@
 
 @media (max-width: 600px) {
   section { padding: 80px var(--spacing-md); }
-  .hero-content h1 { font-size: 2.8rem; }
+  
+  /* Fluid text sizing to fit exceptionally long words down gracefully */
+  .hero-content h1 { 
+    font-size: clamp(1.8rem, 8vw, 2.8rem); 
+    line-height: 1.2;
+    letter-spacing: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
   .hero-content p { font-size: 1rem; }
-  .section-header h2 { font-size: 2.5rem; }
+  
+  .section-header h2 { 
+    font-size: clamp(1.6rem, 6vw, 2.5rem); 
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fixing heading layout sizing on Contact page */
+  .contact-info h1 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem) !important;
+    line-height: 1.2;
+    letter-spacing: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+  }
+  
   .menu-grid { grid-template-columns: 1fr; }
   .about-images-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Language Specific Overrides — Targets the Georgian Alphabet Layout
+   ========================================================================== */
+
+html[lang="ka"] h1,
+html[lang="ka"] h2,
+html[lang="ka"] h3,
+html[lang="ka"] .hero-content h1,
+html[lang="ka"] .contact-info h1,
+html[lang="ka"] .section-header h2 {
+  letter-spacing: 0px !important; /* Prevents letter tracking separation layout errors with Georgian glyphs */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Tighter layout adjustments specifically for Georgian text length constraints */
+@media (max-width: 900px) {
+  html[lang="ka"] .hero-content h1 { font-size: 2.8rem; }
+  html[lang="ka"] .contact-info h1 { font-size: 2.5rem !important; }
+}
+
+@media (max-width: 600px) {
+  html[lang="ka"] .hero-content h1 { font-size: 2.1rem; }
+  html[lang="ka"] .contact-info h1 { font-size: 1.9rem !important; }
+  html[lang="ka"] .section-header h2 { font-size: 1.9rem; }
 }
