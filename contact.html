@@ -22,11 +22,10 @@
           <p data-i18n="contact_subtitle">For private events, reservations, or general inquiries, our concierge is at your service.</p>
           
           <div class="info-grid">
-<div class="info-block">
-  <strong data-i18n="contact_address_label">Location:</strong>
-  <span data-i18n="contact_street">Tamar Mepe Street</span>
-  <span data-i18n="contact_city_country">Kutaisi, Georgia</span>
-</div>
+            <div class="info-block">
+              <strong data-i18n="contact_address_label">Location:</strong>
+              <span data-i18n="contact_street">Tamar Mepe Street</span>
+              <span data-i18n="contact_city_country">Kutaisi, Georgia</span>
             </div>
             <div class="info-block">
               <strong data-i18n="contact_phone_label">Phone:</strong>
@@ -38,18 +37,33 @@
             </div>
           </div>
           
-          <form class="contact-form" onsubmit="event.preventDefault();">
+          <!-- AJAX Interactive Booking Form -->
+          <form id="booking-form" class="contact-form">
+            <!-- Paste your Web3Forms Access Key inside the value attribute below -->
+            <input type="hidden" name="access_key" value=6012012b-9862-412b-8b0e-450411f3c36a>
+            
             <div class="input-group">
-              <input type="text" data-i18n-placeholder="form_name" placeholder="Your Full Name" required>
+              <input type="text" name="name" data-i18n-placeholder="form_name" placeholder="Your Full Name" required>
             </div>
             <div class="input-group">
-              <input type="email" data-i18n-placeholder="form_email" placeholder="Your Email Address" required>
+              <input type="email" name="email" data-i18n-placeholder="form_email" placeholder="Your Email Address" required>
             </div>
             <div class="input-group">
-              <textarea rows="4" data-i18n-placeholder="form_message" placeholder="Reservation Details or Inquiry" required></textarea>
+              <textarea rows="4" name="message" data-i18n-placeholder="form_message" placeholder="Reservation Details or Inquiry" required></textarea>
             </div>
             <button type="submit" class="btn-primary" data-i18n="btn_send">Send Inquiry</button>
           </form>
+
+          <!-- Dynamic Success Message Container (Hidden by default) -->
+          <div id="form-success-message" style="display: none; padding: 25px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; text-align: center; margin-top: 20px; background-color: rgba(255,255,255,0.02);">
+            <h3 data-i18n="booking_success_title" style="color: #61f4de; margin-bottom: 10px;">Inquiry Sent!</h3>
+            <p data-i18n="booking_success_text" style="font-size: 0.95rem; line-height: 1.5; opacity: 0.8; margin: 0;"></p>
+          </div>
+
+          <!-- Dynamic Error Message Container (Hidden by default) -->
+          <div id="form-error-message" style="display: none; padding: 15px; border: 1px solid #ff4d4d; border-radius: 4px; text-align: center; margin-top: 20px; background-color: rgba(255, 77, 77, 0.05);">
+            <p data-i18n="booking_error_text" style="color: #ff4d4d; font-size: 0.95rem; margin: 0;"></p>
+          </div>
         </div>
         
         <div class="map-container">
@@ -67,11 +81,59 @@
     </section>
   </main>
   
-
   <div id="footer-placeholder"></div>
 
   <script src="js/language-switcher.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Form Interceptor Script -->
+  <script>
+    const form = document.getElementById('booking-form');
+    const successMessage = document.getElementById('form-success-message');
+    const errorMessage = document.getElementById('form-error-message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = "...";
+      submitBtn.disabled = true;
+
+      errorMessage.style.display = 'none';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })
+      .then(async (response) => {
+        let res = await response.json();
+        if (response.status == 200) {
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+        } else {
+          console.error(res);
+          errorMessage.style.display = 'block';
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        errorMessage.style.display = 'block';
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+      });
+    });
+  </script>
 </body>
 </html>
