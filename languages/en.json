@@ -60,6 +60,8 @@
   "form_email": "Your Email Address",
   "form_message": "Reservation Details or Inquiry",
   "btn_send": "Send Inquiry",
-  
-  "footer_rights": "All rights reserved."
+  "footer_rights": "All rights reserved.",
+  "booking_success_title": "Inquiry Sent!",
+  "booking_success_text": "Thank you. We will contact you shortly to confirm your reservation.",
+  "booking_error_text": "Something went wrong. Please try again."
 }

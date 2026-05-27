@@ -128,3 +128,25 @@ html[lang="ka"] .section-header h2 {
   html[lang="ka"] .contact-info h1 { font-size: 1.9rem !important; }
   html[lang="ka"] .section-header h2 { font-size: 1.85rem !important; }
 }
+
+/* --- Critical Fix for the Main Menu Title on Mobile --- */
+@media (max-width: 768px) {
+  h1[data-i18n="menu_title"] {
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100vw !important; /* Prevents it from ever pushing past the screen edge */
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }
+  
+  /* Make the Georgian version specifically smaller to fit the long word perfectly */
+  html[lang="ka"] h1[data-i18n="menu_title"] {
+    font-size: clamp(1.5rem, 7.5vw, 2rem) !important; 
+    letter-spacing: 0 !important;
+    line-height: 1.2 !important;
+  }
+}
