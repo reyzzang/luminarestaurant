@@ -1,7 +1,14 @@
-// 1. RUN IMMEDIATELY: Load language synchronously/before page render
+// 1. RUN IMMEDIATELY: Load language and update UI before page finishes rendering
 (async function() {
     const lang = localStorage.getItem('siteLang') || 'en';
     document.documentElement.setAttribute('lang', lang);
+    
+    // Find the UI element and update it right away
+    const currentLangText = document.querySelector('.current-lang-text');
+    if (currentLangText) {
+        updateSwitcherUI(lang, currentLangText);
+    }
+    
     try {
         const response = await fetch(`languages/${lang}.json`);
         const translations = await response.json();
@@ -11,7 +18,7 @@
     }
 })();
 
-// 2. Initialize UI after DOM is ready
+// 2. Initialize the rest of the dropdown listeners after DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
 
 async function initLanguageSwitcher() {
@@ -20,9 +27,6 @@ async function initLanguageSwitcher() {
   const langOptions = document.querySelectorAll('.lang-dropdown li');
   
   if (!switcher || !currentLangText) return;
-
-  const currentLang = localStorage.getItem('siteLang') || 'en';
-  updateSwitcherUI(currentLang, currentLangText);
 
   switcher.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -43,7 +47,7 @@ async function initLanguageSwitcher() {
       
       document.body.style.opacity = '0.5';
       await loadLanguage(selectedLang);
-      document.documentElement.setAttribute('lang', selectedLang); // Update lang attribute
+      document.documentElement.setAttribute('lang', selectedLang);
       setTimeout(() => { document.body.style.opacity = '1'; }, 200);
     });
   });
@@ -51,7 +55,7 @@ async function initLanguageSwitcher() {
 
 function updateSwitcherUI(lang, textElement) {
   const map = { 'en': 'EN', 'ka': 'GE', 'ru': 'RU' };
-  textElement.textContent = map[lang];
+  textElement.textContent = map[lang] || 'EN';
 }
 
 async function loadLanguage(lang) {

@@ -2,18 +2,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Global Page Transition Logic
   const overlay = document.querySelector('.page-transition-overlay');
   if (overlay) {
-    setTimeout(() => { overlay.classList.add('fade-out'); }, 300); // Fade out on load
+    setTimeout(() => { overlay.classList.add('fade-out'); }, 300);
   }
 
-  // Intercept links for smooth page transitions
+  // Intercept links
   document.querySelectorAll('a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const target = this.getAttribute('href');
-      // Only apply transition to internal pages, not anchors or external links
       if (target && target.endsWith('.html') && !this.hasAttribute('target')) {
         e.preventDefault();
         if (overlay) overlay.classList.remove('fade-out');
-        setTimeout(() => { window.location.href = target; }, 800); // Wait for fade in
+        setTimeout(() => { window.location.href = target; }, 300); // Updated to 300ms to match CSS
       }
     });
   });
@@ -22,13 +21,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadComponent('navbar-placeholder', 'components/navbar.html');
   await loadComponent('footer-placeholder', 'components/footer.html');
 
+  // Trigger Translation again after navbar loads
+  if (typeof applyTranslations === 'function') {
+    const lang = localStorage.getItem('siteLang') || 'en';
+    fetch(`languages/${lang}.json`)
+      .then(res => res.json())
+      .then(data => applyTranslations(data));
+  }
+
   initNavbar();
   initMobileMenu();
   
   if (typeof initLanguageSwitcher === 'function') initLanguageSwitcher();
   if (typeof initScrollAnimations === 'function') initScrollAnimations();
   
-  // Highlight active nav link
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(link => {
     if (link.getAttribute('href') === currentPath) link.classList.add('active');
@@ -56,13 +62,13 @@ function initNavbar() {
 }
 
 function initMobileMenu() {
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
+  // Use event delegation in case navbar was loaded dynamically
+  document.addEventListener('click', (e) => {
+    const hamburger = e.target.closest('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('active');
-    });
-  }
+    }
+  });
 }
